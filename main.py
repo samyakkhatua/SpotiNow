@@ -10,8 +10,31 @@ from base64 import b64encode
 import base64
 import secrets
 import string
+from fastapi.middleware.cors import CORSMiddleware
+
+# todo
+# hide api credentials
+# refresh token - change print statements
+# handle not playing
+# fix footer overlay
+
 
 app = FastAPI()
+
+# Configure CORS
+origins = [
+    "https://links.samyakkhatua.in",
+    "http://localhost:5173/",
+    "http://127.0.0.1:5173"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def read_root():
@@ -24,8 +47,8 @@ token_expires_at = None
 
 CLIENT_ID = '36f15c5c0d4f424ea5c8f23193a87ef6'
 CLIENT_SECRET = '04da3a43c83d4d8b8b2cce9f77398494'
-# redirect_uri = 'http://127.0.0.1:8000/callback'
-redirect_uri = 'https://spotinow-1-t1281143.deta.app/callback'
+redirect_uri = 'http://127.0.0.1:8000/callback'
+# redirect_uri = 'https://spotinow-1-t1281143.deta.app/callback'
 
 def generate_random_string(length: int) -> str:
     characters = string.ascii_letters + string.digits
@@ -111,6 +134,10 @@ def get_current_track():
 
     if response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=json_resp.get('error'))
+    
+    #if not playing
+    if json_resp == None:
+        return False
 
     track_id = json_resp['item']['id']
     track_name = json_resp['item']['name']
