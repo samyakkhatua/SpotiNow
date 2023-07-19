@@ -14,8 +14,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # todo
 # hide api credentials
-# refresh token - change print statements
-# handle not playing
 # fix footer overlay
 
 
@@ -111,13 +109,13 @@ def refresh_access_token():
         }
     }
 
-    print(access_token[-10:])
+    print("old: ",access_token[-10:])
     response = requests.post(auth_options['url'], data=auth_options['data'])
     if response.status_code == 200:
         data = response.json()
         access_token = data['access_token']
         token_expires_at = time.time() + 3600  # Set default expiration time to 60 minutes (3600 seconds)
-        print(access_token[-10:])
+        print("new: ",access_token[-10:])
         return {'access_token': access_token}
 
 def get_current_track():
@@ -165,7 +163,6 @@ def currently_playing():
 
 @app.get("/refresh-token")
 def refresh_token():
-    print("ok please")
     try:
         refreshed_token = refresh_access_token()
         return refreshed_token
