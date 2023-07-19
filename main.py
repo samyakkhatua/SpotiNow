@@ -15,7 +15,6 @@ from dotenv import load_dotenv
 import os
 
 # todo
-# hide api credentials
 # fix footer overlay
 
 
@@ -49,8 +48,10 @@ token_expires_at = None
 
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+CALLBACK_URL = os.getenv("API_URL")
+
 # redirect_uri = 'http://127.0.0.1:8000/callback'
-redirect_uri = 'https://spotinow-1-t1281143.deta.app/callback'
+redirect_uri = f'{CALLBACK_URL}/callback'
 
 def generate_random_string(length: int) -> str:
     characters = string.ascii_letters + string.digits
