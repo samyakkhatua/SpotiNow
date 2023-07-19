@@ -14,10 +14,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
 
-# todo
-# fix footer overlay
-
-
 load_dotenv()
 
 app = FastAPI()
@@ -39,6 +35,8 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
+    print(CLIENT_ID)
+
     return {"Welcome to Spotinow!"}
 
 SPOTIFY_GET_CURRENT_TRACK_URL = 'https://api.spotify.com/v1/me/player/currently-playing'
@@ -48,10 +46,10 @@ token_expires_at = None
 
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
-CALLBACK_URL = os.getenv("API_URL")
+CALLBACK_URL = os.getenv("CALLBACK_URL")
 
 # redirect_uri = 'http://127.0.0.1:8000/callback'
-redirect_uri = f'{CALLBACK_URL}/callback'
+redirect_uri = CALLBACK_URL
 
 def generate_random_string(length: int) -> str:
     characters = string.ascii_letters + string.digits

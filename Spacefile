@@ -7,3 +7,14 @@ micros:
     run: uvicorn main:app
     public_routes:
       - "/*"
+    presets:
+      env:
+        - name: CLIENT_ID
+          description: spotify Client ID
+          default: "36f15c5c0d4f424ea5c8f23193a87ef6"
+        - name: CLIENT_SECRET
+          description: spotify Client secret
+          default: "04da3a43c83d4d8b8b2cce9f77398494"
+        - name: CALLBACK_URL
+          description: spotify Client ID
+          default: "https://spotinow-1-t1281143.deta.app/callback"
