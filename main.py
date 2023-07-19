@@ -11,11 +11,15 @@ import base64
 import secrets
 import string
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
+import os
 
 # todo
 # hide api credentials
 # fix footer overlay
 
+
+load_dotenv()
 
 app = FastAPI()
 
@@ -43,10 +47,10 @@ access_token = None
 refresh_token = None
 token_expires_at = None
 
-CLIENT_ID = '36f15c5c0d4f424ea5c8f23193a87ef6'
-CLIENT_SECRET = '04da3a43c83d4d8b8b2cce9f77398494'
-redirect_uri = 'http://127.0.0.1:8000/callback'
-# redirect_uri = 'https://spotinow-1-t1281143.deta.app/callback'
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+# redirect_uri = 'http://127.0.0.1:8000/callback'
+redirect_uri = 'https://spotinow-1-t1281143.deta.app/callback'
 
 def generate_random_string(length: int) -> str:
     characters = string.ascii_letters + string.digits
