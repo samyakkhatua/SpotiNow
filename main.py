@@ -48,7 +48,6 @@ CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 CALLBACK_URL = os.getenv("CALLBACK_URL")
 
-# redirect_uri = 'http://127.0.0.1:8000/callback'
 redirect_uri = CALLBACK_URL
 
 def generate_random_string(length: int) -> str:
@@ -130,15 +129,19 @@ def get_current_track():
             "Authorization": f"Bearer {access_token}"
         }
     )
-
+    
+    #if not playing
+    if response.status_code == 204:
+        return False
+    
+    
+    print(response)
     json_resp = response.json()
+    # print(json_resp)
 
     if response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=json_resp.get('error'))
     
-    #if not playing
-    if json_resp == None:
-        return False
 
     track_id = json_resp['item']['id']
     track_name = json_resp['item']['name']
@@ -154,12 +157,16 @@ def get_current_track():
         "artists": artist_names,
         "link": link
     }
+    print( current_track_info)
     return current_track_info
 
 @app.get("/currently-playing")
 def currently_playing():
+    
     try:
         current_track_info = get_current_track()
+        if current_track_info==False:
+            return False
         return current_track_info
     except HTTPException as e:
         return {"error": str(e.detail)}
