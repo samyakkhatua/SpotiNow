@@ -1,5 +1,4 @@
-import multiprocessing
-from fastapi import FastAPI, Request, BackgroundTasks
+from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 from fastapi.responses import JSONResponse
 from fastapi import HTTPException
