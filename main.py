@@ -43,6 +43,7 @@ access_token = None
 refresh_token = None
 token_expires_at = None
 
+# API credentials
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 CALLBACK_URL = os.getenv("CALLBACK_URL")
