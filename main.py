@@ -12,6 +12,10 @@ import string
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
+from deta import Deta
+
+deta = Deta()
+db = deta.Base("auth")
 
 load_dotenv()
 
