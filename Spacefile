@@ -18,3 +18,6 @@ micros:
         - name: CALLBACK_URL
           description: spotify Client ID
           default: "https://spotinow-1-t1281143.deta.app/callback"
+        - name: DETA_PROJECT_KEY
+          description: DETA project key - name "auth"
+          default: "d0gd8ib9wmd_2mPojoiWsTasPu1wWBs1Ls7fU4TYZEEU"

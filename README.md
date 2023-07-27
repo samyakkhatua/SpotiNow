@@ -6,7 +6,7 @@ Spotinow is a web application that allows you to authenticate with Spotify, retr
 
 ### FrontEnd Showcase Link : https://links.samyakkhatua.in
 ### Backend Deployed Link : https://spotinow-1-t1281143.deta.app
-### Guthub Repo : https://github.com/samyakkhatua/attendee 
+### Guthub Repo : https://github.com/samyakkhatua/spotinow 
 
 ## Demo
 
