@@ -13,11 +13,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
 from deta import Deta
-
-deta = Deta()
-db = deta.Base("auth")
+import asyncio
 
 load_dotenv()
+
+deta = Deta(os.getenv("DETA_PROJECT_KEY")) 
+db = deta.Base("spotinowAuth")
+
 
 app = FastAPI()
 
@@ -38,7 +40,17 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    print(CLIENT_ID)
+
+    # db.put({"token": "Sam"})
+    getAccessToken = db.get("r64qrgn7t9y0")
+    # json_res = getAccessToken.json()
+    accessToken = getAccessToken.get('accessToken')
+    print(accessToken)
+#     {
+# 	"key": "r64qrgn7t9y0"
+# 	"accessToken" : ""
+# 	"refreshToken" : ""
+# }
 
     return {"Welcome to Spotinow!"}
 
@@ -124,8 +136,18 @@ def refresh_access_token():
         print("new: ",access_token[-10:])
         return {'access_token': access_token}
 
-def get_current_track():
+def getAccessToken():
     global access_token
+
+    access_token = db.get("r64qrgn7t9y0")
+    return getAccessToken.get('accessToken')
+
+async def get_current_track():
+    global access_token
+
+    print(access_token)
+    await getAccessToken()
+    print(access_token)
 
     response = requests.get(
         SPOTIFY_GET_CURRENT_TRACK_URL,
@@ -188,3 +210,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    # getAccessToken()
