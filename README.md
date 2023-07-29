@@ -10,7 +10,7 @@ Spotinow is a web application that allows you to authenticate with Spotify, retr
 
 ## Demo
 
-<!-- ![Coming Soon](https://media.giphy.com/media/AXK99IqSdSMjbmP4Mn/giphy.) -->
+![Coming Soon](XK99IqSdSMjbmP4Mn/giphy.)
 
 
 ## Features
