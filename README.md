@@ -124,4 +124,4 @@ Currently, Spotinow provides basic functionality for fetching the currently play
 - Support for more Spotify API endpoints.
 
 
-<!-- I welcome contributions from the community to improve and expand Spotinow further. If you find any issues or have ideas for improvements, please feel free to contribute by creating pull requests. -->
+I welcome contributions from the community to improve and expand Spotinow further. If you find any issues or have ideas for improvements, please feel free to contribute by creating pull requests.
