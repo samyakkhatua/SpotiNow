@@ -42,10 +42,10 @@ app.add_middleware(
 def read_root():
 
     # db.put({"token": "Sam"})
-    getAccessToken = db.get("r64qrgn7t9y0")
+    # getAccessToken = db.get("r64qrgn7t9y0")
     # json_res = getAccessToken.json()
-    accessToken = getAccessToken.get('accessToken')
-    print(accessToken)
+    # accessToken = getAccessToken.get('accessToken')
+    # print(accessToken)
 #     {
 # 	"key": "r64qrgn7t9y0"
 # 	"accessToken" : ""
